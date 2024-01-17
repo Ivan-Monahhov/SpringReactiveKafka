@@ -26,10 +26,10 @@ class Test2 : AbstractIntegrationTest() {
 
     @Test
     fun consumerTest(output: CapturedOutput) {
-        Mono.delay(Duration.ofMillis(5000))
+        Mono.delay(Duration.ofMillis(2000))
             .then(Mono.fromSupplier { output.out })
             .`as`(StepVerifier::create)
-            .consumeNextWith { s -> Assertions.assertTrue(s.contains("consumer received hello world")) }
+            .consumeNextWith { s -> Assertions.assertTrue(s.contains("consumer received msg hello world")) }
             .verifyComplete()
     }
 
