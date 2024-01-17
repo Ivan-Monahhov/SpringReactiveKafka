@@ -15,7 +15,7 @@ import java.util.function.UnaryOperator
 @DirtiesContext
 @SpringBootTest(properties = ["logging.level.root=INFO", "spring.cloud.stream.kafka.binder.configuration.auto.offset.reset=earliest"])
 @EmbeddedKafka(partitions = 1, bootstrapServersProperty = "spring.kafka.bootstrap-servers")
-abstract class AbstractIntegrationTest {
+public abstract class AbstractIntegrationTest {
     @Autowired
     lateinit var broker: EmbeddedKafkaBroker
     protected fun <K, V> createSender(builder: UnaryOperator<SenderOptions<K, V>>): KafkaSender<K, V> {

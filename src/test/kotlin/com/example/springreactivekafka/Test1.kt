@@ -13,26 +13,27 @@ import java.time.Duration
 import java.util.function.Consumer
 
 
-@TestPropertySource(properties = ["spring.cloud.stream.bindings.testConsumer-in-0.destination=input-topic"])
+@TestPropertySource(properties = ["spring.cloud.stream.bindings.testConsumer-in-0.destination=input-topic","spring.cloud.function.definition=producer;testConsumer"])
 class KafkaProducerTest : AbstractIntegrationTest() {
+    // https://github.com/vinsguru/reactive-event-driven-microservices/tree/master
     @Autowired
     lateinit var consumer: Consumer<Flux<String?>>
 
     @Test
     fun producerTest() {
-        /*sink.asFlux()
+        sink.asFlux()
             .take(2)
             .timeout(Duration.ofSeconds(5))
             .`as`(StepVerifier::create)
             .consumeNextWith { s -> Assertions.assertEquals("msg 0", s) }
             .consumeNextWith { s -> Assertions.assertEquals("msg 1", s) }
-            .verifyComplete()*/
-        consumer.andThen { f ->
+            .verifyComplete()
+        /*consumer.andThen { f ->
             f.take(2).timeout(Duration.ofSeconds(5)).`as`(StepVerifier::create)
                 .consumeNextWith { s -> Assertions.assertEquals("msg 0", s) }
                 .consumeNextWith { s -> Assertions.assertEquals("msg 1", s) }
                 .verifyComplete()
-        }
+        }*/
     }
 
     @TestConfiguration
