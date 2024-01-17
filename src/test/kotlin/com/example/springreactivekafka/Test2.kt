@@ -17,7 +17,7 @@ import java.time.Duration
 import java.util.function.Consumer
 import java.util.function.Supplier
 
-
+// Property naming structure is extremely important : it should go beanName-directionIn/Out-0
 @TestPropertySource(properties = ["spring.cloud.stream.bindings.testProducer-out-0.destination=input-topic", "spring.cloud.function.definition=testProducer;consumer"])
 @ExtendWith(OutputCaptureExtension::class)
 class Test2 : AbstractIntegrationTest() {
