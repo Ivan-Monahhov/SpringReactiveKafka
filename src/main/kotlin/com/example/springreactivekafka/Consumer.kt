@@ -10,9 +10,13 @@ import java.util.function.Consumer
 
 @Configuration
 class KafkaConsumer {
+    var flux2: Flux<String?>? = null
+    public fun getFlux():Flux<String?> {return flux2!!}
+
     @Bean
     fun consumer(): Consumer<Flux<String?>> {
         return Consumer<Flux<String?>> { flux: Flux<String?> ->
+            flux2 = flux
             flux
                 .doOnNext { s ->
                     log.info(
