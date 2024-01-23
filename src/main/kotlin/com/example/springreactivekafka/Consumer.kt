@@ -11,7 +11,9 @@ import java.util.function.Consumer
 @Configuration
 class KafkaConsumer {
     var flux2: Flux<String?>? = null
-    public fun getFlux():Flux<String?> {return flux2!!}
+    public fun getFlux(): Flux<String?> {
+        return flux2!!
+    }
 
     @Bean
     fun consumer(): Consumer<Flux<String?>> {
@@ -21,7 +23,7 @@ class KafkaConsumer {
                 .doOnNext { s ->
                     log.info(
                         "consumer received {}",
-                        s
+                        s,
                     )
                 }
                 .subscribe()

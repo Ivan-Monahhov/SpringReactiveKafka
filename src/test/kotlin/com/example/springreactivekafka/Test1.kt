@@ -12,8 +12,7 @@ import reactor.test.StepVerifier
 import java.time.Duration
 import java.util.function.Consumer
 
-
-@TestPropertySource(properties = ["spring.cloud.stream.bindings.testConsumer-in-0.destination=input-topic","spring.cloud.function.definition=producer;testConsumer"])
+@TestPropertySource(properties = ["spring.cloud.stream.bindings.testConsumer-in-0.destination=input-topic", "spring.cloud.function.definition=producer;testConsumer"])
 class KafkaProducerTest : AbstractIntegrationTest() {
     // https://github.com/vinsguru/reactive-event-driven-microservices/tree/master
     @Autowired
@@ -43,7 +42,7 @@ class KafkaProducerTest : AbstractIntegrationTest() {
             return Consumer { f: Flux<String> ->
                 f.doOnNext { t: String ->
                     sink.tryEmitNext(
-                        t
+                        t,
                     )
                 }.subscribe()
             }

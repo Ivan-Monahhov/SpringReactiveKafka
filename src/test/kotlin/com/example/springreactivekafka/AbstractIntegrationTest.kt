@@ -11,10 +11,13 @@ import reactor.kafka.sender.SenderOptions
 import reactor.kafka.sender.SenderRecord
 import java.util.function.UnaryOperator
 
-
 @DirtiesContext
 @SpringBootTest(properties = ["logging.level.root=INFO", "spring.cloud.stream.kafka.binder.configuration.auto.offset.reset=earliest"])
-@EmbeddedKafka(partitions = 1, bootstrapServersProperty = "spring.kafka.bootstrap-servers")
+@EmbeddedKafka(
+    partitions = 1,
+    bootstrapServersProperty = "spring.kafka.bootstrap-servers",
+    brokerProperties = ["log4j.rootLogger=Trace, kafka", "log4j.appender.kafka=com.cloudera.kafka.log4jappender.KafkaLog4jAppender", "log4j.appender.stdout=org.apache.log4j.ConsoleAppender", "log4j.appender.stdout.Target=System.out"],
+)
 public abstract class AbstractIntegrationTest {
     @Autowired
     lateinit var broker: EmbeddedKafkaBroker

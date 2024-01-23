@@ -1,7 +1,7 @@
 spring:
   cloud:
     function:
-      definition: producer;consumer
+      definition: producer;consumer;kpiConsumer;kpiProducer
     stream:
       bindings:
         consumer-in-0:
@@ -9,6 +9,11 @@ spring:
           group: some-group
         producer-out-0:
           destination: input-topic
+        kpiConsumer-in-0:
+          destination: object-topic
+          group: some-group2
+        kpiProducer-out-0:
+          destination: object-topic
 #      kafka:
 #        bindings:
 #          producer-out-0:

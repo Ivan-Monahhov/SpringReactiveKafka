@@ -21,7 +21,7 @@ class KafkaProducer {
     fun producer(): Supplier<Flux<String>> {
         return Supplier<Flux<String>> {
             Flux.interval(Duration.ofSeconds(1))
-                .take(10)
+                //.take(10)
                 .map { i -> "msg $i" }
                 .doOnNext { m -> log.info("produced {}", m) }
         }
