@@ -17,7 +17,7 @@ import java.time.Duration
 import java.util.function.Consumer
 import java.util.function.Supplier
 
-@TestPropertySource(properties = [ "spring.cloud.function.definition=kpiConsumer;kpiProducer"])
+//@TestPropertySource(properties = [ "spring.cloud.function.definition=kpiConsumer;kpiProducer"])
 @ExtendWith(OutputCaptureExtension::class)
 class Test5 : AbstractIntegrationTest() {
     @Autowired
